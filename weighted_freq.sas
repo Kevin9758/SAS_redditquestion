@@ -1,5 +1,8 @@
-options validvarname = any;
+options validvarname = any; 
 
+/* Example data where we want to find the weighted frequency of
+   the sum of values = 't' in each column. */
+   
   data nt(drop=id);
   input id x1 $ x2 $ x3 $ x4 $ x5 $;
   datalines;
@@ -11,8 +14,11 @@ options validvarname = any;
   ;
 run;
 
-* n = number of X's;
+* n = number of X's / columns;
 %let n = 5;
+
+
+* Transpose the dataset in order to compute row sums with array;
 
 proc transpose data=nt out = tn;
   var x1-x&n;
