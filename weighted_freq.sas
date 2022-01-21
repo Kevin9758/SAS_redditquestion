@@ -15,24 +15,24 @@ run;
 %let n = 5;
 
 proc transpose data=nt out = tn;
-var x1-x&n;
+  var x1-x&n;
 run;
 
 
 data rowsum(keep=_name_ newsum);
-set tn;
-array rs[*]col1-col5;
-do i = 1 to &n;
-if rs[i] = 't' then sum+1;
-end;
+  set tn;
+  array rs[*]col1-col5;
+  do i = 1 to &n;
+    if rs[i] = 't' then sum+1;
+  end;
 
-newsum = sum - lag(sum);
-if _name_ = 'x1' then newsum = sum;
+  newsum = sum - lag(sum);
+    if _name_ = 'x1' then newsum = sum;
 run;
 
 proc freq data= rowsum;
-weight newsum;
-table _name_/ out = results outcum;
+  weight newsum;
+  table _name_/ out = results outcum;
 run;
 
 
@@ -40,9 +40,9 @@ proc print data=results;
 run;
 
 data final_table(rename= (_name_ = X));
-set results;
-'n (% of total)'n = cat(count,' ','(' , round(cum_pct,0.1),'%', ')');
-drop percent count cum_freq cum_pct; 
+  set results;
+  'n (% of total)'n = cat(count,' ','(' , round(cum_pct,0.1),'%', ')');
+  drop percent count cum_freq cum_pct; 
 run;
 
 
