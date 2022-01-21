@@ -1,14 +1,14 @@
 options validvarname = any;
 
-data nt(drop=id);
-input id x1 $ x2 $ x3 $ x4 $ x5 $;
-datalines;
-1 f t f f f
-2 t t t f t
-3 t t t t t
-4 f f f f f
-5 t f t t f
-;
+  data nt(drop=id);
+  input id x1 $ x2 $ x3 $ x4 $ x5 $;
+  datalines;
+  1 f t f f f
+  2 t t t f t
+  3 t t t t t
+  4 f f f f f
+  5 t f t t f
+  ;
 run;
 
 * n = number of X's;
